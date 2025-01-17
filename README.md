@@ -1,87 +1,85 @@
-# Macro Pad Project
+# KommPad: Macro Pad Project
 
 ## Overview
-This project implements a feature-rich macro pad using an Arduino-compatible board. The macro pad includes the following features:
-
-- **OLED Display**: Provides visual feedback for current layers and actions.
-- **Rotary Encoder with Switch**: Allows for navigation and action triggering.
-- **Keypad Input**: Supports multi-key configurations for various functionalities.
-- **Analog Sliders**: Controls volume or other app-specific parameters.
-- **Layer System**: Offers up to 4 layers for different sets of actions.
-- **Idle and Help States**: Automatically displays help or transitions to idle mode after inactivity.
-
-## Hardware Requirements
-1. Arduino-compatible board (e.g., Arduino Pro Micro).
-2. 128x32 OLED display (I2C, SSD1306).
-3. Rotary encoder with push-button functionality.
-4. 2x3 matrix keypad.
-5. 3 potentiometers for analog sliders.
-6. Miscellaneous components: resistors, wires, and breadboard/PCB for assembly.
-
-## Software Dependencies
-- Arduino IDE
-- Adafruit SSD1306 library
-- Keypad library
-- HID-Project library
-
-## File Descriptions
-1. **main.ino**: The main program file that initializes hardware, manages the loop, and integrates all functionality.
-2. **deej.ino**: Handles the analog slider inputs and serial output for slider values.
-3. **display.ino**: Manages the OLED display, showing layer information, actions, and idle state.
-4. **config.ino**: Contains initialization and configuration functions for the macro pad.
-5. **layer1.ino, layer2.ino, layer3.ino, layer4.ino**: Defines specific behaviors for each layer, including button and encoder actions.
+KommPad is a customizable macro pad designed for efficiency and ease of use. It features multiple layers, rotary encoder support, an OLED display for feedback, and analog sliders for additional controls. The hardware is predefined and sold as a complete unit, making it easy to set up and start using right away.
 
 ## Features
-### OLED Display
-- Displays the current layer name and associated actions.
-- Shows dynamic feedback when an action is performed.
+- **OLED Display**: Provides real-time feedback on the current layer and actions.
+- **Rotary Encoder**: Allows intuitive navigation and control.
+- **Keypad**: Configurable buttons for custom macros.
+- **Analog Sliders**: Great for volume control or other analog inputs.
+- **Layer System**: Up to 4 customizable layers for different workflows.
+- **HID Functionality**: Enables macro control using the HID-Project library.
 
-### Rotary Encoder
-- Supports clockwise (CW) and counterclockwise (CCW) rotations.
-- Push-button functionality to trigger actions or lock the current layer.
+## How to Customize
+### Configuration Files
+The functionality of KommPad is defined in the following files:
 
-### Keypad
-- Maps 2x3 buttons to layer-specific actions.
-- Customizable button actions for each layer.
+1. **`config.ino`**:
+   - Central configuration file where you can define global settings such as layer names and other initialization parameters.
 
-### Analog Sliders
-- Reads values from potentiometers and outputs them as a `|`-delimited string.
-- Can be used for volume control or app-specific parameters.
+2. **Layer Files** (`layer1.ino`, `layer2.ino`, `layer3.ino`, `layer4.ino`):
+   - Each file corresponds to a specific layer.
+   - You can customize the button actions, encoder functions, and other layer-specific behavior in these files.
 
-### Layers
-- Up to 4 customizable layers.
-- Each layer can define unique actions for buttons and the rotary encoder.
+### Core Files
+The following files implement the core functionality and generally do not need modification:
 
-## Usage
-1. Upload the code to your Arduino board using the Arduino IDE.
-2. Assemble the hardware according to the specified pin mappings in the code.
-3. Use the rotary encoder to navigate and select actions.
-4. Press keys on the keypad to trigger layer-specific actions.
-5. Adjust sliders to control analog values.
+1. **`kommpad.ino`**:
+   - Main program loop and general control logic.
 
-## Customization
-- Edit the `actions` array in the main file to define layer-specific behaviors.
-- Update `layer_name` to assign meaningful names to each layer.
-- Modify `deej.ino` to normalize or map slider values as needed.
+2. **`deej.ino`**:
+   - Handles the analog sliders and processes their input values.
 
-## Troubleshooting
-1. **OLED Display Not Working**:
-   - Check I2C address and connections.
-   - Ensure the Adafruit SSD1306 library is installed.
-2. **Keypad Issues**:
-   - Verify row and column pin connections.
-   - Test with a simple keypad sketch to rule out hardware faults.
-3. **Rotary Encoder Misbehaving**:
-   - Check for proper debouncing in the code.
-   - Ensure encoder pins are correctly mapped and stable.
-4. **Analog Sliders Not Reading**:
-   - Confirm potentiometer connections and analog input pins.
+3. **`display.ino`**:
+   - Manages the OLED display and provides feedback to the user.
 
-## Future Improvements
-- Add graphical feedback on the OLED (e.g., bar graphs for sliders).
-- Implement EEPROM storage for persistent layer settings.
-- Expand to support more layers or actions.
+You are free to modify any part of the code, but changes to the core files are typically unnecessary unless you want to extend functionality.
 
----
-For questions or contributions, feel free to reach out!
+## HID-Project Library
+KommPad uses the HID-Project library to emulate keyboard and mouse inputs. This library allows you to create powerful macros, such as:
+
+- Key combinations (e.g., `Ctrl + C`, `Alt + Tab`)
+- Mouse movements and clicks
+- Media control (e.g., volume up, play/pause)
+
+### Changing Macros
+To modify macros:
+1. Open the appropriate layer file (`layer1.ino`, `layer2.ino`, etc.).
+2. Locate the button or encoder function you want to change.
+3. Use HID commands provided by the library, such as:
+   ```cpp
+   Keyboard.press(KEY_LEFT_CTRL);
+   Keyboard.press('C');
+   Keyboard.releaseAll();
+   ```
+   or
+   ```cpp
+   Consumer.write(MEDIA_VOLUME_UP);
+   ```
+4. Upload the updated code to your KommPad.
+
+For more details on the HID-Project library, refer to its [official documentation](https://github.com/NicoHood/HID).
+
+## Getting Started
+1. Connect your KommPad to your computer via USB.
+2. The default configuration will be loaded and ready to use.
+3. To customize:
+   - Edit `config.ino` and the layer files as described above.
+   - Compile and upload the code using the Arduino IDE.
+
+## Hardware Information
+KommPad is sold as a complete hardware unit and includes:
+- A 2x3 button matrix keypad
+- Rotary encoder with a push button
+- 2.8-inch OLED display (128x32 resolution)
+- 3 analog potentiometers for custom controls
+- Arduino-compatible microcontroller (Arduino Pro Micro)
+
+All components are preassembled and tested for optimal performance.
+
+## Support
+For questions or assistance, feel free to contact me through discord https://discordapp.com/users/kommwtria.
+
+Enjoy using KommPad to streamline your workflows!
 
