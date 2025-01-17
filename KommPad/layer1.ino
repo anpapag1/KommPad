@@ -6,8 +6,8 @@ void initiate_1() {
   actions[Lnum1][0][0]="Prev";
   actions[Lnum1][0][1]="Next";
   actions[Lnum1][0][2]="Pl/Ps";
-  actions[Lnum1][1][0]="Speaker";
-  actions[Lnum1][1][1]="Hd/nes";
+  actions[Lnum1][1][0]="Spotf";
+  actions[Lnum1][1][1]="ytb";
   actions[Lnum1][1][2]="Layer";
   actions[Lnum1][2][0]="Volume ++";
   actions[Lnum1][2][1]="Mute";
@@ -30,12 +30,28 @@ void butNo3_1(){
 }
 
 void butNo4_1(){
-  Keyboard.write(HID_KEYBOARD_F13);
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press('r');
+  Keyboard.releaseAll();
+  delay(100);
+  Keyboard.print("spotify");
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();  
   print_action(actions[Lnum1][1][0]);
 }
 
 void butNo5_1(){
-  Keyboard.write(HID_KEYBOARD_F15);
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.press(KEY_LEFT_ALT);
+  Keyboard.press('t');
+  Keyboard.releaseAll();
+  delay(500);
+  Keyboard.print("https://www.youtube.com");
+  Keyboard.press(KEY_RETURN);
+  Keyboard.releaseAll();
+  delay(2000);
+  Keyboard.press('/');
+  Keyboard.releaseAll();
   print_action(actions[Lnum1][1][1]);
 }
 
