@@ -22,8 +22,8 @@ Deej is a library for controlling analog inputs such as potentiometers. KommPad 
 
 **Install and configure Deej**:
 - Run the [deej_installer.bat](https://github.com/anpapag1/KommPad/blob/main/deej_installer.bat)  that downloads the deej to program files and puts it in the startup folder
+- After the .bat finishes is done, edit the config.yaml as you need
 - Deej documentation is available on GitHub: [Deej Repository](https://github.com/omriharel/deej).
-- Modify config.yaml for three sliders and choose the correct COM port
 
 ## Reference view
 ```
