@@ -19,7 +19,7 @@
 8. [Hardware Information](#hardware-information)
 9. [Support](#support)
 
-# Overview
+## Overview
 
 KommPad is a customizable macro pad designed for efficiency and ease of use. It features multiple layers, rotary encoder support, an OLED display for feedback, and analog sliders for additional controls. The hardware is predefined and sold as a complete unit, making it easy to set up and start using right away.
 
