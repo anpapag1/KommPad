@@ -58,20 +58,6 @@ Deej is a library for controlling analog inputs such as potentiometers. KommPad 
 
 ## How to Customize
 
-### Configuration Files
-
-The functionality of KommPad is defined in the following files:
-
-1. **`config.ino`**:
-
-   - Central configuration file where you can define global settings such as layer names and other initialization parameters.
-
-2. **Layer Files** (`layer1.ino`, `layer2.ino`, `layer3.ino`, `layer4.ino`):
-
-   - Each file corresponds to a specific layer.
-   - You can customize the button actions, encoder functions, and other layer-specific behavior in these files.
-   - Layer names and actions are defined here. For instance, you can assign unique names to each layer (e.g., "Editing", "Gaming", "Productivity") and specify what each button or encoder action does within that context.
-
 ### Core Files
 
 The following files implement the core functionality and generally do not need modification:
@@ -89,6 +75,20 @@ The following files implement the core functionality and generally do not need m
    - Manages the OLED display and provides feedback to the user.
 
 You are free to modify any part of the code, but changes to the core files are typically unnecessary unless you want to extend functionality.
+
+### Configuration Files
+
+The functionality of KommPad is defined in the following files:
+
+1. **`config.ino`**:
+
+   - Central configuration file where you can define global settings such as layer names and other initialization parameters.
+
+2. **Layer Files** (`layer1.ino`, `layer2.ino`, `layer3.ino`, `layer4.ino`):
+
+   - Each file corresponds to a specific layer.
+   - You can customize the button actions, encoder functions, and other layer-specific behavior in these files.
+   - Layer names and actions are defined here. For instance, you can assign unique names to each layer (e.g., "Editing", "Gaming", "Productivity") and specify what each button or encoder action does within that context.
 
 ### Changing Macros
 
