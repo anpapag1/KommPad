@@ -1,6 +1,6 @@
 # KommPad: Macro Pad Project
 
-## Table of Contents
+### Table of Contents
 
 1. [Overview](#overview)
 2. [Features](#features)
