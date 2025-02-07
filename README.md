@@ -95,10 +95,8 @@ To modify macros:
 6. Upload the updated code to your KommPad.
 
 
-> [!IMPORTANT]  
-> Read the contribution guideline before adding a pull request.
-
-- ${\color{red}!!!}$ When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload ${\color{red}!!!}$
+   > [!IMPORTANT]  
+   > When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload
 
 For more details on the HID-Project library, refer to its [official documentation](https://github.com/NicoHood/HID).
 
