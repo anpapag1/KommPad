@@ -93,7 +93,7 @@ To modify macros:
    ```
 5. Assign descriptive actions to each button for clarity (e.g., "Copy", "Paste", "Increase Volume").
 6. Upload the updated code to your KommPad.
-   > [!CAUTION]
+   > **Warning**
    > When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload
 
 - ${\color{red}!!!}$ When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload ${\color{red}!!!}$
