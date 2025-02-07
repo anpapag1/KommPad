@@ -21,11 +21,13 @@ Deej is a library for controlling analog inputs such as potentiometers. KommPad 
 ### Required Setup
 
 **Install and configure Deej**:
-- Run the [deej_installer.bat](https://github.com/anpapag1/KommPad/blob/main/deej_installer.bat)  that downloads the deej to program files and puts it in the startup folder
+
+- Run the [deej_installer.bat](https://github.com/anpapag1/KommPad/blob/main/deej_installer.bat) that downloads the deej to program files and puts it in the startup folder
 - After the .bat finishes is done, edit the config.yaml as you need
 - Deej documentation is available on GitHub: [Deej Repository](https://github.com/omriharel/deej).
 
 ## Reference view
+
 ```
     [pot 0]      [pot 1]     [pot 2]        _____________________
 +------------+------------+------------+   |   Rotary Encoder    |
@@ -69,14 +71,6 @@ The following files implement the core functionality and generally do not need m
 
 You are free to modify any part of the code, but changes to the core files are typically unnecessary unless you want to extend functionality.
 
-## HID-Project Library
-
-KommPad uses the HID-Project library to emulate keyboard and mouse inputs. This library allows you to create powerful macros, such as:
-
-- Key combinations (e.g., `Ctrl + C`, `Alt + Tab`)
-- Mouse movements and clicks
-- Media control (e.g., volume up, play/pause)
-
 ### Changing Macros
 
 To modify macros:
@@ -97,11 +91,22 @@ To modify macros:
    ```cpp
    void butNo6_1(){ UpLayer(); }
    ```
-6. Assign descriptive actions to each button for clarity (e.g., "Copy", "Paste", "Increase Volume").
-7. Upload the updated code to your KommPad.
-   - !!! When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload !!!
+5. Assign descriptive actions to each button for clarity (e.g., "Copy", "Paste", "Increase Volume").
+6. Upload the updated code to your KommPad.
+   > [!CAUTION]
+   > When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload
+
+- ${\color{red}!!!}$ When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload ${\color{red}!!!}$
 
 For more details on the HID-Project library, refer to its [official documentation](https://github.com/NicoHood/HID).
+
+### HID-Project Library
+
+KommPad uses the HID-Project library to emulate keyboard and mouse inputs. This library allows you to create powerful macros, such as:
+
+- Key combinations (e.g., `Ctrl + C`, `Alt + Tab`)
+- Mouse movements and clicks
+- Media control (e.g., volume up, play/pause)
 
 ## Special Features
 
@@ -144,4 +149,3 @@ All components are preassembled and tested for optimal performance.
 For questions or assistance, feel free to contact me through discord https\://discordapp.com/users/kommwtria.
 
 Enjoy using KommPad to streamline your workflows!
-
