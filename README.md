@@ -148,7 +148,7 @@ This functionality is especially useful for maintaining a consistent workflow ac
 1. Connect your KommPad to your computer via USB.
 2. The default configuration will be loaded and ready to use.
 3. To customize:
-   - Edit `config.ino` and the layer files as described [above](#overview).
+   - Edit `config.ino` and the layer files as described [above](#changing-macros).
    - Compile and upload the code using the Arduino IDE.
 
 ## Hardware Information
