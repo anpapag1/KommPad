@@ -1,6 +1,25 @@
 # KommPad: Macro Pad Project
 
-## Overview
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Deej Configuration](#deej-configuration)
+   - [Required Setup](#required-setup)
+4. [Reference View](#reference-view)
+5. [How to Customize](#how-to-customize)
+   - [Configuration Files](#configuration-files)
+   - [Core Files](#core-files)
+   - [Changing Macros](#changing-macros)
+   - [HID-Project Library](#hid-project-library)
+6. [Special Features](#special-features)
+   - [Help Display](#help-display)
+   - [Locking the Start Layer](#locking-the-start-layer)
+7. [Getting Started](#getting-started)
+8. [Hardware Information](#hardware-information)
+9. [Support](#support)
+
+# Overview
 
 KommPad is a customizable macro pad designed for efficiency and ease of use. It features multiple layers, rotary encoder support, an OLED display for feedback, and analog sliders for additional controls. The hardware is predefined and sold as a complete unit, making it easy to set up and start using right away.
 
@@ -22,7 +41,7 @@ Deej is a library for controlling analog inputs such as potentiometers. KommPad 
 
 **Install and configure Deej**:
 
-- Run the [deej_installer.bat](https://github.com/anpapag1/KommPad/blob/main/deej_installer.bat) that downloads the deej to program files and puts it in the startup folder
+- Run the [deej\_installer.bat](https://github.com/anpapag1/KommPad/blob/main/deej_installer.bat) that downloads the deej to program files and puts it in the startup folder
 - After the .bat finishes is done, edit the config.yaml as you need
 - Deej documentation is available on GitHub: [Deej Repository](https://github.com/omriharel/deej).
 
@@ -81,6 +100,7 @@ To modify macros:
    ```cpp
    Keyboard.press(KEY_LEFT_CTRL);
    Keyboard.press('C');
+
    Keyboard.releaseAll();
    ```
    or
@@ -94,7 +114,7 @@ To modify macros:
 5. Assign descriptive actions to each button for clarity (e.g., "Copy", "Paste", "Increase Volume").
 6. Upload the updated code to your KommPad.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]\
 > When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload
 
 ### HID-Project Library
@@ -145,6 +165,7 @@ All components are preassembled and tested for optimal performance.
 
 ## Support
 
-For questions or assistance, feel free to contact me through discord https\://discordapp.com/users/kommwtria.
+For questions or assistance, feel free to contact me through discord [https://discordapp.com/users/kommwtria](https://discordapp.com/users/kommwtria).
 
 Enjoy using KommPad to streamline your workflows!
+
