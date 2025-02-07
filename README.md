@@ -97,8 +97,6 @@ To modify macros:
 > [!IMPORTANT]  
 > When you upload you need to exit the Deej application because it uses the serial ports that are needed to upload
 
-For more details on the HID-Project library, refer to its [official documentation](https://github.com/NicoHood/HID).
-
 ### HID-Project Library
 
 KommPad uses the HID-Project library to emulate keyboard and mouse inputs. This library allows you to create powerful macros, such as:
@@ -106,6 +104,8 @@ KommPad uses the HID-Project library to emulate keyboard and mouse inputs. This 
 - Key combinations (e.g., `Ctrl + C`, `Alt + Tab`)
 - Mouse movements and clicks
 - Media control (e.g., volume up, play/pause)
+
+For more details on the HID-Project library, refer to its [official documentation](https://github.com/NicoHood/HID).
 
 ## Special Features
 
