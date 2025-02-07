@@ -27,11 +27,11 @@ if not exist "%install_dir%" (
 )
 
 :: Download deej.exe
-echo Downloading deej.exe...
+echo Downloading deej.exe from github...
 curl -L "%deej_url%" -o "%install_dir%\deej.exe"
 
 :: Download config.yaml
-echo Downloading config.yaml...
+echo Downloading config.yaml from github...
 curl -L "%config_url%" -o "%install_dir%\config.yaml"
 
 :: Grant full permissions to the install directory (required for writing config updates)
@@ -42,6 +42,7 @@ echo Creating shortcut in Startup folder...
 echo Set oWS = WScript.CreateObject("WScript.Shell") > "%TEMP%\create_shortcut.vbs"
 echo Set oLink = oWS.CreateShortcut("%shortcut%") >> "%TEMP%\create_shortcut.vbs"
 echo oLink.TargetPath = "%install_dir%\deej.exe" >> "%TEMP%\create_shortcut.vbs"
+echo oLink.WorkingDirectory = "%install_dir%" >> "%TEMP%\create_shortcut.vbs"
 echo oLink.Save >> "%TEMP%\create_shortcut.vbs"
 
 :: Run the VBScript to create the shortcut
@@ -59,7 +60,7 @@ for /f "delims=" %%A in ('powershell -Command "$port = Get-WMIObject Win32_Seria
 
 :: Check if Arduino Leonardo was found
 if "%arduino_com%"=="NOT_FOUND" (
-    echo ERROR: Arduino Leonardo not found. Check your USB connections.
+    echo ERROR: Arduino Leonardo not found. Check your USB connections and restart deej_installer.bat
     pause
     exit /b
 )
@@ -68,20 +69,23 @@ echo Arduino Leonardo found on: %arduino_com%
 
 :: Update the config.yaml file with the detected COM port
 echo Updating config.yaml...
-powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace 'com_port: COM[0-9]+', 'com_port: %arduino_com%' | Set-Content '%install_dir%\config.yaml'"
 
+powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace 'com_port: COM[0-9]+', 'com_port: %arduino_com%' | Set-Content '%install_dir%\config.yaml'"
 echo Config file updated successfully!
+
 echo.
 
 :: Modify slider_mapping in config.yaml using a single PowerShell command
 echo Updating slider_mapping in config.yaml...
+
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '0: master', '0: discord.exe' | Set-Content '%install_dir%\config.yaml'"
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '1: chrome.exe', '1: spotify.exe' | Set-Content '%install_dir%\config.yaml'"
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '2: spotify.exe', '2:' | Set-Content '%install_dir%\config.yaml'"
-powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '3:', '	- pathofexile_x64.exe' | Set-Content '%install_dir%\config.yaml'"
-powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '	- pathofexile_x64.exe', '	- rocketleague.exe' | Set-Content '%install_dir%\config.yaml'"
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '    - rocketleague.exe', '' | Set-Content '%install_dir%\config.yaml'"
+powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '    - pathofexile_x64.exe', '    - rocketleague.exe' | Set-Content '%install_dir%\config.yaml'"
+powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '  3:', '    - pathofexile_x64.exe' | Set-Content '%install_dir%\config.yaml'"
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '4: discord.exe', '' | Set-Content '%install_dir%\config.yaml'"
+
 echo.
 
 :: Open the deej folder
