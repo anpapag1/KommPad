@@ -13,7 +13,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 // Rotary encoder pins
 #define encPin1 10
 #define encPin2 16
-#define SW 9
+#define SW 14
 
 // Keypad configuration
 #define numRows 2 // Number of rows in the keypad
@@ -23,8 +23,8 @@ char keymap[numRows][numCols] =
   {'4', '5', '6'} };
 
 // Define the row and column pins connected to the keypad
-byte colPins[numCols] = {8, 7, 6}; // Columns 1 to 3
-byte rowPins[numRows] = {4, 5};    // Rows 1 to 2
+byte colPins[numCols] = {6, 7, 8}; // Columns 1 to 3
+byte rowPins[numRows] = {5, 4};    // Rows 1 to 2
 
 // Create a Keypad object
 Keypad keypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows, numCols);
@@ -114,7 +114,8 @@ void loop() {
     } else {
       enc_func(layer, 2); // Short press action
     }
-    while (digitalRead(SW) == LOW) {} // Wait until switch is released
+    while (digitalRead(SW) == LOW) {} // Wait for switch release or long press time
+
   }
 
   // Get pressed key from the keypad
@@ -123,6 +124,7 @@ void loop() {
   // If a key is pressed, execute the corresponding action
   if (key != NO_KEY) {
     butt_func(layer, key);
+    Serial.println(key);
   }
   
   // Release Alt key after 700 milliseconds
