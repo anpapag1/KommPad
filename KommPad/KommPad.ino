@@ -2,6 +2,12 @@
 #include <Adafruit_SSD1306.h>
 #include <HID-Project.h>
 #include <Keypad.h>
+#include <Adafruit_NeoPixel.h>
+
+// RgbLed 
+#define PIN 15
+#define NUM_LEDS 2  // Change to the number of LEDs you have
+Adafruit_NeoPixel strip(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 // OLED display settings
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -86,20 +92,21 @@ void setup() {
 
   // Initialize encoder state
   lastStateencPin1 = digitalRead(encPin1); // Encoder 1 initial state
+  
+  strip.begin();
 }
 
 // Main loop function
 void loop() {
   deej();  // Call function to manage the macro pad operations
+  rgbLed();
     
   currentStateencPin1 = digitalRead(encPin1); // Read the current state of the encoder pin
   if (currentStateencPin1 != lastStateencPin1 && currentStateencPin1 == 1){  // Encoder pin change detection
     if (digitalRead(encPin2) != currentStateencPin1) { // Counter-clockwise rotation
       enc_func(layer, 0);
-      delay(2);
     } else {            // Clockwise rotation
       enc_func(layer, 1);
-      delay(2);
     }
   }
   lastStateencPin1  = currentStateencPin1; // Store the last encoder pin state
