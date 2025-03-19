@@ -1,5 +1,8 @@
+extern float brightnessMod;
+
 // Function to update the display based on the current layer and help status
 void print_display(int layer, bool help) {
+  brightnessMod= 1;
   display.clearDisplay();  // Clear the previous display
   display.setCursor(30, 8); // Set cursor position to display the layer name
   display.setTextColor(SSD1306_WHITE); // Set text color to white
@@ -42,6 +45,7 @@ void UpLayer() {
 
 // Function to reset to the starting layer and clear the display
 void idle() {
+  brightnessMod= .1;
   display.clearDisplay();  // Clear the display
   display.display();  // Update the display to show the cleared screen
   layer = startLayer;  // Reset the layer to the starting layer

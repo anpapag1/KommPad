@@ -41,16 +41,12 @@ void butNo4_1(){
 }
 
 void butNo5_1(){
-  Keyboard.press(KEY_LEFT_CTRL);
-  Keyboard.press(KEY_LEFT_ALT);
-  Keyboard.press('t');
+  Keyboard.press(KEY_LEFT_GUI);
+  Keyboard.press('r');
   Keyboard.releaseAll();
-  delay(500);
+  delay(100);
   Keyboard.print("https://www.youtube.com");
   Keyboard.press(KEY_RETURN);
-  Keyboard.releaseAll();
-  delay(2000);
-  Keyboard.press('/');
   Keyboard.releaseAll();
   print_action(actions[Lnum1][1][1]);
 }

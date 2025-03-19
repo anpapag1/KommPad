@@ -12,9 +12,9 @@ void initiate_conf() {
 
   // rgb 
   brightness = 100; // max 255
-  effect = 0; // 0 - static, 1 - breathing(multicolor), 2 - rainbow
+  effect = 1; // 0 - static, 1 - breathing(multicolor), 2 - rainbow
   mainColors[0] = 0xff00ff;
-  mainColor[1] = 0x36d06d; // uncomend for more colors in suported effects
-  // mainColor[2] = 0xff644d;
-  // mainColor[3] = 0x5b3cc7;
+  mainColors[1] = 0x36d06d; // uncomend for more colors in suported effects
+  // mainColors[2] = 0xff644d;
+  // mainColors[3] = 0x5b3cc7;
 }

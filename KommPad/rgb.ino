@@ -3,8 +3,7 @@ int breath = 0; //Brightness for breath effect
 bool breathUp = 1; //segment of breath effect
 
 uint8_t brightness;
-float actualBrightness;
-int brightnessMod = 1;
+float brightnessMod = .5;
 uint32_t mainColors[8]; 
 uint8_t effect;
 
@@ -41,8 +40,9 @@ void breathingEffect(int speed) {
   }
 
   // Apply the dynamic breathing effect using the current color and dynamic brightness
-  strip.setPixelColor(0, hexToRGB(mainColors[colorIndex], breath / speed)); 
-  strip.setPixelColor(1, hexToRGB(mainColors[colorIndex], breath / speed)); 
+  float modulatedBrightness = (breath / speed ) * brightnessMod; // Modify brightness by brightness mode
+  strip.setPixelColor(0, hexToRGB(mainColors[colorIndex], modulatedBrightness)); 
+  strip.setPixelColor(1, hexToRGB(mainColors[colorIndex], modulatedBrightness)); 
   strip.show();
 }
 
@@ -54,7 +54,6 @@ void rainbowCycle(int speed) {
 }
 
 void rgbLed(){
-  actualBrightness = brightness*brightnessMod;
   switch (effect) {
       case 0:
         staticEffect(mainColors[0]);
