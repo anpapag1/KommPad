@@ -2,9 +2,12 @@ uint16_t hue = 0; // Hue value for rainbow cycling
 int breath = 0; //Brightness for breath effect
 bool breathUp = 1; //segment of breath effect
 
-uint8_t brightness = 100;
-uint32_t mainColor = 0xff00ff; 
-uint32_t secColor = 0x00ffff; 
+uint8_t brightness;
+float actualBrightness;
+int brightnessMod = 1;
+uint32_t mainColors[8]; 
+uint8_t effect;
+
 
 uint32_t hexToRGB(uint32_t hex, uint8_t brightness) {
   byte r = ((hex >> 16) & 0xFF) * brightness / 255;
@@ -20,19 +23,26 @@ void staticEffect(uint32_t color1){
 
 }
 
-void breathingEffect(uint32_t color1, int speed) {
+void breathingEffect(int speed) {
+  static int colorIndex = 0; // Index to track the current color
+
   // Adjust brightness to simulate the breathing effect
   if (breathUp) {
     breath++;  // Increase brightness
     if (breath >= brightness * speed) breathUp = false;  // Change direction
   } else {
     breath--;  // Decrease brightness
-    if (breath <= 0) breathUp = true;  // Change direction
+    if (breath <= 0) {
+      breathUp = true;  // Change direction
+      do {
+        colorIndex = (colorIndex + 1) % 8; // Move to the next color
+      } while (mainColors[colorIndex] == 0); // Skip empty spaces
+    }
   }
 
-  // Apply the dynamic breathing effect using color1 and dynamic brightness
-  strip.setPixelColor(0, hexToRGB(color1, breath/speed)); 
-  strip.setPixelColor(1, hexToRGB(color1, breath/speed)); 
+  // Apply the dynamic breathing effect using the current color and dynamic brightness
+  strip.setPixelColor(0, hexToRGB(mainColors[colorIndex], breath / speed)); 
+  strip.setPixelColor(1, hexToRGB(mainColors[colorIndex], breath / speed)); 
   strip.show();
 }
 
@@ -44,5 +54,21 @@ void rainbowCycle(int speed) {
 }
 
 void rgbLed(){
-  rainbowCycle(2);
+  actualBrightness = brightness*brightnessMod;
+  switch (effect) {
+      case 0:
+        staticEffect(mainColors[0]);
+        break;
+      case 1:
+        breathingEffect(10);
+        break;
+      case 2:
+        rainbowCycle(2);
+        break;
+      case 3:
+        // add an effect
+        break;
+      default:
+        break;
+  }
 }
