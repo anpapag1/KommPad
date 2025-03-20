@@ -21,7 +21,7 @@
 
 ## Overview
 
-KommPad is a customizable macro pad designed for efficiency and ease of use. It features multiple layers, rotary encoder support, an OLED display for feedback, and analog sliders for additional controls. The hardware is predefined and sold as a complete unit, making it easy to set up and start using right away.
+KommPad is a customizable macro pad designed for efficiency and ease of use. It features multiple layers, rotary encoder support, an OLED display for feedback, and analog sliders for additional controls. The hardware is predefined and sold as a complete unit, making it easy to set up and start using right away. One additional software needed to be downloaded ([deej](#deej-configuration)) by for the potential meter functionality to be available
 
 ## Features
 
@@ -107,7 +107,7 @@ To modify macros:
    ```cpp
    Consumer.write(MEDIA_VOLUME_UP);
    ```
-   Here is a comprehensive list of actions you can do [HID-Prodject Functions Example]()
+   Here is a comprehensive list of actions you can do [HID-Prodject Functions Example](Function_Example.md)
 4. Make sure that there is at least an UpLayer() function on the keyboard for changing layers
    ```cpp
    void butNo6_1(){ UpLayer(); }

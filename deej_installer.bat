@@ -56,7 +56,7 @@ echo.
 
 :: Find the COM port for "Arduino Leonardo"
 echo Detecting Arduino Leonardo COM Port... (might take some time, don't close the cmd)
-for /f "delims=" %%A in ('powershell -Command "$port = Get-WMIObject Win32_SerialPort | Where-Object { $_.Caption -like '*Arduino Leonardo*' }; if ($port) { Write-Output $port.DeviceID } else { Write-Output 'NOT_FOUND' }"') do set "arduino_com=%%A"
+for /f "delims=" %%A in ('powershell -Command "$port = Get-WMIObject Win32_SerialPort | Where-Object { $_.Caption -like '*Arduino*' }; if ($port) { Write-Output $port.DeviceID } else { Write-Output 'NOT_FOUND' }"') do set "arduino_com=%%A"
 
 :: Check if Arduino Leonardo was found
 if "%arduino_com%"=="NOT_FOUND" (
