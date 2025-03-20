@@ -31,7 +31,7 @@ KommPad is a customizable macro pad designed for efficiency and ease of use. It 
 - **Keypad**: Configurable buttons for custom macros.
 - **Analog Potentiometers**: Great for volume control or other analog inputs.
 - **Layer System**: Up to 4 customizable layers for different workflows.
-- **HID Functionality**: Enables macro control using the HID-Project library.
+- **HID Functionality**: Enables macro control using the [HID-Project library](https://github.com/NicoHood/HID).
 
 ## Deej Configuration
 
@@ -107,6 +107,7 @@ To modify macros:
    ```cpp
    Consumer.write(MEDIA_VOLUME_UP);
    ```
+   Here is a comprehensive list of actions you can do [HID-Prodject Functions Example]()
 4. Make sure that there is at least an UpLayer() function on the keyboard for changing layers
    ```cpp
    void butNo6_1(){ UpLayer(); }
