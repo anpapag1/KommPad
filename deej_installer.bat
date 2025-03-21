@@ -68,7 +68,7 @@ if "%arduino_com%"=="NOT_FOUND" (
     echo Listing all connected COM ports:
     powershell -Command "Get-WMIObject Win32_SerialPort | ForEach-Object { Write-Output $_.DeviceID + ' - ' + $_.Caption }"
     echo.
-    set /p arduino_com= Check your USB connections and restart deej_installer.bat or enter the COM port manually (e.g., COM3): 
+    set /p "arduino_com=Please restart deej_installer.bat or enter the COM port manually (e.g., COM3): "
     if "%arduino_com%"=="" (
         echo No COM port entered. Exiting...
         pause
