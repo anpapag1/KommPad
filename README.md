@@ -15,6 +15,7 @@
 6. [Special Features](#special-features)
    - [Help Display](#help-display)
    - [Locking the Start Layer](#locking-the-start-layer)
+   - [RGB Functionality](#rgb-functionality)
 7. [Getting Started](#getting-started)
 8. [Hardware Information](#hardware-information)
 9. [Support](#support)
@@ -143,6 +144,33 @@ The rotary encoder includes a long-press function to lock the current layer. To 
 3. This ensures that even after idle or reset, the device will revert to your preferred layer.
 
 This functionality is especially useful for maintaining a consistent workflow across sessions.
+
+### RGB Functionality
+
+KommPad includes RGB LED support, allowing you to customize lighting effects for enhanced aesthetics and functionality. The RGB features are controlled using the `rgb.ino` file, which provides several predefined effects.
+
+#### Available Effects
+
+1. **Static Effect**:
+   - Displays a single static color.
+   - Configurable via the `Colors` array in `config.ino`.
+
+2. **Breathing Effect**:
+   - Smoothly fades the brightness of the LEDs in and out.
+   - Cycles through the colors defined in the `Colors` array.
+
+3. **Rainbow Cycle**:
+   - Displays a continuous rainbow effect that cycles through all hues.
+
+#### Configuration
+
+You can configure the RGB settings in the `config.ino` file:
+```cpp
+brightness = 100; // Set brightness (0-255)
+effect = 1;       // Choose effect: 0 - Static, 1 - Breathing, 2 - Rainbow
+Colors[0] = 0xff00ff; // Define colors in hexadecimal (e.g., magenta)
+Colors[1] = 0x36d06d; // Add more colors as needed
+```
 
 ## Getting Started
 

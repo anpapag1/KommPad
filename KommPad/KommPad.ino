@@ -8,6 +8,7 @@
 #define PIN 15
 #define NUM_LEDS 2  // Change to the number of LEDs you have
 Adafruit_NeoPixel strip(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
+extern uint16_t numColors = 0; // Variable to store the count of non-empty colors
 
 // OLED display settings
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
@@ -76,6 +77,13 @@ void setup() {
   initiate_2();
   initiate_3();
   initiate_4();
+
+  // Count non-empty colors in Colors
+  for (int i = 0; i < 15; i++) {
+    if (Colors[i] != 0) {
+      num_Colors++;
+    }
+  }
   
   // Initialize OLED display
   if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {

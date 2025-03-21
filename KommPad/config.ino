@@ -1,6 +1,7 @@
 extern uint8_t brightness;
 extern uint8_t effect;
-extern uint32_t mainColors[8];
+extern uint32_t Colors[8];
+uint8_t numColors = 0; // Variable to store the count of non-empty colors
 
 void initiate_conf() {
   // layers
@@ -12,9 +13,10 @@ void initiate_conf() {
 
   // rgb 
   brightness = 100; // max 255
-  effect = 1; // 0 - static, 1 - breathing(multicolor), 2 - rainbow
-  mainColors[0] = 0xff00ff; // colors set in hex
-  mainColors[1] = 0x36d06d; // uncomend for more colors in suported effects
-  // mainColors[2] = 0xff644d;
-  // mainColors[3] = 0x5b3cc7;
+  effect = 1; // 0 - static(multicolor*), 1 - breathing(*multicolor), 2 - rainbow
+  Colors[0] = 0xff00ff; // colors set in hex
+  Colors[1] = 0x36d06d; // uncomend for more colors in suported effects
+  // Colors[2] = 0xff644d;
+  // Colors[3] = 0x5b3cc7;  
+  // *multicolor means that it can take multiple colors from the array Colors[16]
 }
