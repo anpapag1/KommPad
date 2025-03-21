@@ -5,11 +5,12 @@ uint8_t numColors = 0; // Variable to store the count of non-empty colors
 
 void initiate_conf() {
   // layers
-  num_layer = 1; // How many layers to enable
+  num_layer = 2; // How many layers to enable
   
   // timings
   idleTime = 25000; // 20 seconds
   longPress = 500; // 0.5 seconds
+  WinRdelay = 100; // if opening apps witn windows R is not fast enough increase this value
 
   // rgb 
   brightness = 100; // max 255

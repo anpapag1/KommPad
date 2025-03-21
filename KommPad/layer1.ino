@@ -33,7 +33,7 @@ void butNo4_1(){
   Keyboard.press(KEY_LEFT_GUI);
   Keyboard.press('r');
   Keyboard.releaseAll();
-  delay(100);
+  delay(WinRdelay);
   Keyboard.print("spotify");
   Keyboard.press(KEY_RETURN);
   Keyboard.releaseAll();  
@@ -44,7 +44,7 @@ void butNo5_1(){
   Keyboard.press(KEY_LEFT_GUI);
   Keyboard.press('r');
   Keyboard.releaseAll();
-  delay(100);
+  delay(WinRdelay);
   Keyboard.print("https://www.youtube.com");
   Keyboard.press(KEY_RETURN);
   Keyboard.releaseAll();

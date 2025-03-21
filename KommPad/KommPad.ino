@@ -108,7 +108,25 @@ void setup() {
 void loop() {
   deej();  // Call function to manage the macro pad operations
   rgbLed();
-    
+  check_ecoder();
+  check_matrix();
+  
+  // Release Alt key after 700 milliseconds
+  if (millis() - AltTabMill > 700 && millis() - AltTabMill < 800){
+    Keyboard.release(KEY_LEFT_ALT);
+  }
+
+  // If no action has been taken for 5 seconds, hide help and go to idle state
+  if (millis() - actionTaken > 5000 && millis() - actionTaken < 5050){
+    print_display(layer, 0);
+  } else if (millis() - actionTaken > idleTime - 50 && millis() - actionTaken < idleTime){
+    idle(); // Idle function (to be defined elsewhere)
+  }
+
+  delay(1); // Small delay to ensure the loop runs smoothly
+}
+
+void check_ecoder(){
   currentStateencPin1 = digitalRead(encPin1); // Read the current state of the encoder pin
   if (currentStateencPin1 != lastStateencPin1 && currentStateencPin1 == 1){  // Encoder pin change detection
     if (digitalRead(encPin2) != currentStateencPin1) { // Counter-clockwise rotation
@@ -132,29 +150,17 @@ void loop() {
     while (digitalRead(SW) == LOW) {} // Wait for switch release or long press time
 
   }
+}
 
-  // Get pressed key from the keypad
-  char key = keypad.getKey();
+void check_matrix(){
+    // Get pressed key from the keypad
+    char key = keypad.getKey();
 
-  // If a key is pressed, execute the corresponding action
-  if (key != NO_KEY) {
-    butt_func(layer, key);
-    Serial.println(key);
-  }
-  
-  // Release Alt key after 700 milliseconds
-  if (millis() - AltTabMill > 700 && millis() - AltTabMill < 800){
-    Keyboard.release(KEY_LEFT_ALT);
-  }
-
-  // If no action has been taken for 5 seconds, hide help and go to idle state
-  if (millis() - actionTaken > 5000 && millis() - actionTaken < 5050){
-    print_display(layer, 0);
-  } else if (millis() - actionTaken > idleTime - 50 && millis() - actionTaken < idleTime){
-    idle(); // Idle function (to be defined elsewhere)
-  }
-
-  delay(1); // Small delay to ensure the loop runs smoothly
+    // If a key is pressed, execute the corresponding action
+    if (key != NO_KEY) {
+      butt_func(layer, key);
+      Serial.println(key);
+    }
 }
 
 // Encoder function for different actions based on rotation direction
