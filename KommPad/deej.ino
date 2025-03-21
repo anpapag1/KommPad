@@ -13,5 +13,5 @@ void deej() {
     }
   }
   
-  // Serial.println(builtString);
+  Serial.println(builtString);
 }

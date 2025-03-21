@@ -20,6 +20,10 @@ if %errorLevel% neq 0 (
     exit /b
 )
 
+:: Ensure PowerShell script execution is enabled
+echo Checking PowerShell execution policy...
+powershell -Command "if ((Get-ExecutionPolicy) -ne 'RemoteSigned') { Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force }"
+
 :: Create installation directory
 if not exist "%install_dir%" (
     echo Creating installation directory...
@@ -85,6 +89,7 @@ powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '    - r
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '    - pathofexile_x64.exe', '    - rocketleague.exe' | Set-Content '%install_dir%\config.yaml'"
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '  3:', '    - pathofexile_x64.exe' | Set-Content '%install_dir%\config.yaml'"
 powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace '4: discord.exe', '' | Set-Content '%install_dir%\config.yaml'"
+powershell -Command "(Get-Content '%install_dir%\config.yaml') -replace 'invert_sliders: false', 'invert_sliders: true' | Set-Content '%install_dir%\config.yaml'"
 
 echo.
 

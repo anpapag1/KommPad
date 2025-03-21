@@ -1,8 +1,8 @@
 #include <Wire.h>
-#include <Lib/Adafruit_SSD1306/Adafruit_SSD1306.h>
-#include <Lib/HID-Project/HID-Project.h>
-#include <Lib/Keypad/Keypad.h>
-#include <Lib/Adafruit_NeoPixel/Adafruit_NeoPixel.h>
+#include <Adafruit_SSD1306.h>
+#include <HID-Project.h>
+#include <Keypad.h>
+#include <Adafruit_NeoPixel.h>
 
 // RgbLed 
 #define PIN 15
