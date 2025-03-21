@@ -64,12 +64,18 @@ for /f "delims=" %%A in ('powershell -Command "$port = Get-WMIObject Win32_Seria
 
 :: Check if Arduino Leonardo was found
 if "%arduino_com%"=="NOT_FOUND" (
-    echo ERROR: Arduino Leonardo not found. Check your USB connections and restart deej_installer.bat
-    pause
-    exit /b
+    echo ERROR: Arduino Leonardo not found. Check your USB connections.
+    echo Listing all connected COM ports:
+    powershell -Command "Get-WMIObject Win32_SerialPort | ForEach-Object { Write-Output $_.DeviceID + ' - ' + $_.Caption }"
+    echo.
+    set /p arduino_com= Check your USB connections and restart deej_installer.bat or enter the COM port manually (e.g., COM3): 
+    if "%arduino_com%"=="" (
+        echo No COM port entered. Exiting...
+        pause
+        exit /b
+    )
 )
-
-echo Arduino Leonardo found on: %arduino_com%
+echo Arduino Leonardo set on: %arduino_com%
 
 :: Update the config.yaml file with the detected COM port
 echo Updating config.yaml...

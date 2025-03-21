@@ -71,4 +71,5 @@ void encBut_1(){
   print_action(actions[Lnum1][2][1]);
 }
 
-
+// ------------------EXAMPLES FOR FUNCTIONS-------------------------
+// https://github.com/anpapag1/KommPad/blob/main/Function_Example.md

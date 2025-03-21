@@ -60,3 +60,5 @@ void encBut_2(){
 }
 
 
+// ------------------EXAMPLES FOR FUNCTIONS-------------------------
+// https://github.com/anpapag1/KommPad/blob/main/Function_Example.md
