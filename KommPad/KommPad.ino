@@ -144,7 +144,9 @@ void check_ecoder() {
     while (digitalRead(SW) == LOW && millis() - lockLayer <= longPress) {}  // Wait for switch release or long press time
     if (millis() - lockLayer > longPress) {                                 // If long press, lock the layer
       startLayer = layer;
-      print_action("locked " + layer_name[layer]);
+      // print_action("locked " + layer_name[layer]);
+      print_action("locked");
+      delay(500);   
     } else {
       enc_func(layer, 2);  // Short press action
     }
@@ -159,7 +161,7 @@ void check_matrix() {
   // If a key is pressed, execute the corresponding action
   if (key != NO_KEY) {
     butt_func(layer, key);
-    Serial.println(key);
+    // Serial.println(key);
   }
 }
 

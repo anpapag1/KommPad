@@ -17,8 +17,8 @@ uint32_t hexToRGB(uint32_t hex, uint8_t brightness) {
 }
 
 void staticEffect(uint32_t color1){
-  strip.setPixelColor(0, hexToRGB(color1, brightness));
-  strip.setPixelColor(1, hexToRGB(color1, brightness));
+  strip.setPixelColor(0, hexToRGB(color1, brightness * brightnessMod));
+  strip.setPixelColor(1, hexToRGB(color1, brightness * brightnessMod));
   strip.show();
 
 }
@@ -40,16 +40,17 @@ void breathingEffect(int speed) {
     }
   }
 
-  // Apply the dynamic breathing effect using the current color and dynamic brightness
-  float modulatedBrightness = (breath / speed ) * brightnessMod; // Modify brightness by brightness mode
+  // Apply the dynamic breathing effect using the current color and dynamic brightness 
+  // float modulatedBrightness = (breath / speed ) * brightnessMod; // Modify brightness by brightness mode
+  float modulatedBrightness = map(breath, 0, brightness * speed, 0, brightness * brightnessMod); // Modify brightness by brightness mode
   strip.setPixelColor(0, hexToRGB(Colors[colorIndex], modulatedBrightness)); 
   strip.setPixelColor(1, hexToRGB(Colors[colorIndex], modulatedBrightness)); 
   strip.show();
 }
 
 void rainbowCycle(int speed) {
-  strip.setPixelColor(0, strip.ColorHSV(hue, 255, brightness));
-  strip.setPixelColor(1, strip.ColorHSV(hue+5000, 255, brightness));
+  strip.setPixelColor(0, strip.ColorHSV(hue, 255, brightness * brightnessMod));
+  strip.setPixelColor(1, strip.ColorHSV(hue+500, 255, brightness * brightnessMod));
   strip.show();
   hue += speed;
 }
