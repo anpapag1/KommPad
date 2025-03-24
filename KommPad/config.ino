@@ -1,7 +1,6 @@
 extern uint8_t brightness;
 extern uint8_t effect;
-extern uint32_t Colors[8];
-uint8_t numColors = 0; // Variable to store the count of non-empty colors
+extern uint32_t Colors[16];
 
 void initiate_conf() {
   // layers
@@ -10,7 +9,6 @@ void initiate_conf() {
   // timings
   idleTime = 25000; // 20 seconds
   longPress = 500; // 0.5 seconds
-  WinRdelay = 100; // if opening apps witn windows R is not fast enough increase this value
 
   // rgb 
   brightness = 100; // max 255

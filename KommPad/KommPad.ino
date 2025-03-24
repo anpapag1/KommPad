@@ -4,17 +4,18 @@
 #include <Keypad.h>
 #include <Adafruit_NeoPixel.h>
 
-// RgbLed 
+// RgbLed
 #define PIN 15
 #define NUM_LEDS 2  // Change to the number of LEDs you have
 Adafruit_NeoPixel strip(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
-extern uint16_t numColors = 0; // Variable to store the count of non-empty colors
+extern uint8_t num_Colors;  // Variable to store the count of non-empty colors
+extern uint32_t Colors[16];
 
 // OLED display settings
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 32 // OLED display height, in pixels
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
-#define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+#define SCREEN_WIDTH 128     // OLED display width, in pixels
+#define SCREEN_HEIGHT 32     // OLED display height, in pixels
+#define OLED_RESET -1        // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3C  ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 // Rotary encoder pins
@@ -23,15 +24,14 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 #define SW 14
 
 // Keypad configuration
-#define numRows 2 // Number of rows in the keypad
-#define numCols 3 // Number of columns in the keypad
-char keymap[numRows][numCols] = 
-{ {'1', '2', '3'},
-  {'4', '5', '6'} };
+#define numRows 2  // Number of rows in the keypad
+#define numCols 3  // Number of columns in the keypad
+char keymap[numRows][numCols] = { { '1', '2', '3' },
+                                  { '4', '5', '6' } };
 
 // Define the row and column pins connected to the keypad
-byte colPins[numCols] = {6, 7, 8}; // Columns 1 to 3
-byte rowPins[numRows] = {5, 4};    // Rows 1 to 2
+byte colPins[numCols] = { 6, 7, 8 };  // Columns 1 to 3
+byte rowPins[numRows] = { 5, 4 };     // Rows 1 to 2
 
 // Create a Keypad object
 Keypad keypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows, numCols);
@@ -55,12 +55,12 @@ String actions[max_layers][3][3];
 // Start layer for locking
 int startLayer = 0;
 bool help = 1;
-int yPos[] = {0, 24}; // Y positions for the two rows
-int xPos[] = {0, 48, 92}; // X positions for the columns
+int yPos[] = { 0, 24 };      // Y positions for the two rows
+int xPos[] = { 0, 48, 92 };  // X positions for the columns
 
 // Analog slider input
 const int NUM_SLIDERS = 3;
-const int analogInputs[NUM_SLIDERS] = {A0, A1, A2};
+const int analogInputs[NUM_SLIDERS] = { A0, A1, A2 };
 int analogSliderValues[NUM_SLIDERS];
 
 // Setup function to initialize components
@@ -84,23 +84,24 @@ void setup() {
       num_Colors++;
     }
   }
-  
+
   // Initialize OLED display
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+  if (!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
     Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Stay in an infinite loop if display fails
+    for (;;)
+      ;  // Stay in an infinite loop if display fails
   }
 
   print_display(layer, help);
-   
+
   // Set pin modes for encoder and switch
   pinMode(encPin1, INPUT_PULLUP);
   pinMode(encPin2, INPUT_PULLUP);
   pinMode(SW, INPUT_PULLUP);
 
   // Initialize encoder state
-  lastStateencPin1 = digitalRead(encPin1); // Encoder 1 initial state
-  
+  lastStateencPin1 = digitalRead(encPin1);  // Encoder 1 initial state
+
   strip.begin();
 }
 
@@ -110,57 +111,56 @@ void loop() {
   rgbLed();
   check_ecoder();
   check_matrix();
-  
+
   // Release Alt key after 700 milliseconds
-  if (millis() - AltTabMill > 700 && millis() - AltTabMill < 800){
+  if (millis() - AltTabMill > 700 && millis() - AltTabMill < 800) {
     Keyboard.release(KEY_LEFT_ALT);
   }
 
   // If no action has been taken for 5 seconds, hide help and go to idle state
-  if (millis() - actionTaken > 5000 && millis() - actionTaken < 5050){
+  if (millis() - actionTaken > 5000 && millis() - actionTaken < 5050) {
     print_display(layer, 0);
-  } else if (millis() - actionTaken > idleTime - 50 && millis() - actionTaken < idleTime){
-    idle(); // Idle function (to be defined elsewhere)
+  } else if (millis() - actionTaken > idleTime - 50 && millis() - actionTaken < idleTime) {
+    idle();  // Idle function (to be defined elsewhere)
   }
 
-  delay(1); // Small delay to ensure the loop runs smoothly
+  delay(1);  // Small delay to ensure the loop runs smoothly
 }
 
-void check_ecoder(){
-  currentStateencPin1 = digitalRead(encPin1); // Read the current state of the encoder pin
-  if (currentStateencPin1 != lastStateencPin1 && currentStateencPin1 == 1){  // Encoder pin change detection
-    if (digitalRead(encPin2) != currentStateencPin1) { // Counter-clockwise rotation
+void check_ecoder() {
+  currentStateencPin1 = digitalRead(encPin1);                                 // Read the current state of the encoder pin
+  if (currentStateencPin1 != lastStateencPin1 && currentStateencPin1 == 1) {  // Encoder pin change detection
+    if (digitalRead(encPin2) != currentStateencPin1) {                        // Counter-clockwise rotation
       enc_func(layer, 0);
-    } else {            // Clockwise rotation
+    } else {  // Clockwise rotation
       enc_func(layer, 1);
     }
   }
-  lastStateencPin1  = currentStateencPin1; // Store the last encoder pin state
-  
+  lastStateencPin1 = currentStateencPin1;  // Store the last encoder pin state
+
   // Check if encoder switch (SW) is pressed
-  if (digitalRead(SW) == LOW) { 
+  if (digitalRead(SW) == LOW) {
     lockLayer = millis();
-    while (digitalRead(SW) == LOW && millis() - lockLayer <= longPress) {} // Wait for switch release or long press time
-    if (millis() - lockLayer > longPress) { // If long press, lock the layer
+    while (digitalRead(SW) == LOW && millis() - lockLayer <= longPress) {}  // Wait for switch release or long press time
+    if (millis() - lockLayer > longPress) {                                 // If long press, lock the layer
       startLayer = layer;
       print_action("locked " + layer_name[layer]);
     } else {
-      enc_func(layer, 2); // Short press action
+      enc_func(layer, 2);  // Short press action
     }
-    while (digitalRead(SW) == LOW) {} // Wait for switch release or long press time
-
+    while (digitalRead(SW) == LOW) {}  // Wait for switch release or long press time
   }
 }
 
-void check_matrix(){
-    // Get pressed key from the keypad
-    char key = keypad.getKey();
+void check_matrix() {
+  // Get pressed key from the keypad
+  char key = keypad.getKey();
 
-    // If a key is pressed, execute the corresponding action
-    if (key != NO_KEY) {
-      butt_func(layer, key);
-      Serial.println(key);
-    }
+  // If a key is pressed, execute the corresponding action
+  if (key != NO_KEY) {
+    butt_func(layer, key);
+    Serial.println(key);
+  }
 }
 
 // Encoder function for different actions based on rotation direction

@@ -6,7 +6,7 @@ uint8_t brightness;
 float brightnessMod = .5;
 uint32_t Colors[16]; 
 uint8_t effect;
-uint8_t numColors = 0; // Variable to store the count of non-empty colors
+uint8_t num_Colors = 0 ; // Variable to store the count of non-empty colors
 
 
 uint32_t hexToRGB(uint32_t hex, uint8_t brightness) {
@@ -57,7 +57,7 @@ void rainbowCycle(int speed) {
 void rgbLed(){
   switch (effect) {
       case 0:
-        staticEffect(Colors[layer % numColors]);
+        staticEffect(Colors[layer % num_Colors]);
         break;
       case 1:
         breathingEffect(10);
