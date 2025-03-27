@@ -6,8 +6,8 @@ void initiate_1() {
   actions[Lnum1][0][0]="Prev";
   actions[Lnum1][0][1]="Next";
   actions[Lnum1][0][2]="Pl/Ps";
-  actions[Lnum1][1][0]="Spotf";
-  actions[Lnum1][1][1]="ytb";
+  actions[Lnum1][1][0]="Speaker";
+  actions[Lnum1][1][1]="Hd/nes";
   actions[Lnum1][1][2]="Layer";
   actions[Lnum1][2][0]="Volume ++";
   actions[Lnum1][2][1]="Mute";
@@ -30,23 +30,15 @@ void butNo3_1(){
 }
 
 void butNo4_1(){
-  Keyboard.press(KEY_LEFT_GUI);
-  Keyboard.press('r');
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.write(HID_KEYBOARD_F13);
   Keyboard.releaseAll();
-  delay(200);
-  Keyboard.print("spotify");
-  Keyboard.press(KEY_RETURN);
-  Keyboard.releaseAll();  
   print_action(actions[Lnum1][1][0]);
 }
 
 void butNo5_1(){
-  Keyboard.press(KEY_LEFT_GUI);
-  Keyboard.press('r');
-  Keyboard.releaseAll();
-  delay(200);
-  Keyboard.print("https://www.youtube.com");
-  Keyboard.press(KEY_RETURN);
+  Keyboard.press(KEY_LEFT_CTRL);
+  Keyboard.write(HID_KEYBOARD_F14);
   Keyboard.releaseAll();
   print_action(actions[Lnum1][1][1]);
 }
@@ -73,3 +65,4 @@ void encBut_1(){
 
 // ------------------EXAMPLES FOR FUNCTIONS-------------------------
 // https://github.com/anpapag1/KommPad/blob/main/Function_Example.md
+

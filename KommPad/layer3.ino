@@ -1,6 +1,5 @@
 int const Lnum3 = 2;
 
-
 void initiate_3() {
   layer_name[Lnum3]="--";
 
@@ -59,6 +58,6 @@ void encBut_3(){
   print_action(actions[Lnum3][2][1]);
 }
 
-
 // ------------------EXAMPLES FOR FUNCTIONS-------------------------
 // https://github.com/anpapag1/KommPad/blob/main/Function_Example.md
+

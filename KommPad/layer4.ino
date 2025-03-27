@@ -8,7 +8,7 @@ void initiate_4() {
   actions[Lnum4][0][2]="--";
   actions[Lnum4][1][0]="--";
   actions[Lnum4][1][1]="--";
-  actions[Lnum4][1][2]="--";
+  actions[Lnum4][1][2]="Layer";
   actions[Lnum4][2][0]="--";
   actions[Lnum4][2][1]="--";
   actions[Lnum4][2][2]="--";
@@ -58,6 +58,6 @@ void encBut_4(){
   print_action(actions[Lnum4][2][1]);
 }
 
-
 // ------------------EXAMPLES FOR FUNCTIONS-------------------------
 // https://github.com/anpapag1/KommPad/blob/main/Function_Example.md
+
