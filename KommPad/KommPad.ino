@@ -106,6 +106,9 @@ void setup() {
 }
 
 // Main loop function
+bool helpHidden = false;
+bool idleTriggered = false;
+
 void loop() {
   deej();  // Call function to manage the macro pad operations
   rgbLed();
@@ -148,11 +151,20 @@ void loop() {
     Keyboard.release(KEY_LEFT_ALT);
   }
 
-  // If no action has been taken for 5 seconds, hide help and go to idle state
-  if (millis() - actionTaken > 5000 && millis() - actionTaken < 5050) {
+  // Help hide logic
+  if (!helpHidden && millis() - actionTaken > 5000) {
     print_display(layer, 0);
-  } else if (millis() - actionTaken > idleTime - 50 && millis() - actionTaken < idleTime) {
-    idle();  // Idle function (to be defined elsewhere)
+    helpHidden = true;
+  }
+  // Idle logic
+  if (!idleTriggered && millis() - actionTaken > idleTime) {
+    idle();
+    idleTriggered = true;
+  }
+  // Reset flags when action is taken
+  if (millis() - actionTaken < 50) {
+    helpHidden = false;
+    idleTriggered = false;
   }
 
   delay(1);  // Small delay to ensure the loop runs smoothly
