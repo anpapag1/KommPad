@@ -3,7 +3,8 @@ int breath = 0; //Brightness for breath effect
 bool breathUp = 1; //segment of breath effect
 
 uint8_t brightness;
-float brightnessMod = .5;
+float brightnessMod;
+float idleBrightnessMod;
 uint32_t Colors[4]; 
 uint8_t effect;
 uint8_t num_Colors = 0 ; // Variable to store the count of non-empty colors

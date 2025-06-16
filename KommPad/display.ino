@@ -1,4 +1,5 @@
 extern float brightnessMod;
+extern float idleBrightnessMod;
 
 void print_display(int layer,bool help){
   brightnessMod= 1;
@@ -37,7 +38,7 @@ void UpLayer(){
 }
 
 void idle(){
-  brightnessMod= .1;
+  brightnessMod= idleBrightnessMod;
   display.clearDisplay();
   display.display();
   layer = startLayer;
