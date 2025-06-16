@@ -3,8 +3,8 @@ int const Lnum2 = 1;
 void initiate_2() {
   layer_name[Lnum2]="Windows";
 
-  actions[Lnum2][0][0] = "Task Mngr";
-  actions[Lnum2][0][1] = "Minimize";
+  actions[Lnum2][0][0] = "Task";
+  actions[Lnum2][0][1] = "Min";
   actions[Lnum2][0][2] = "Lock";
   actions[Lnum2][1][0] = "Alt F4";
   actions[Lnum2][1][1] = "Find";
