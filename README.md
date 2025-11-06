@@ -1,4 +1,6 @@
 # KommPad: Macro Pad Project
+![KommPad Device](images/kommpad-hero.png)
+*A customizable macro pad for enhanced productivity*
 
 ### Table of Contents
 
@@ -21,8 +23,6 @@
 9. [Support](#support)
 
 ## Overview
-![KommPad Device](images/kommpad-hero.png)
-*KommPad: A customizable macro pad for enhanced productivity*
 
 KommPad is a customizable macro pad designed for efficiency and ease of use. It features multiple layers, rotary encoder support, an OLED display for feedback, and analog sliders for additional controls. The hardware is predefined and sold as a complete unit, making it easy to set up and start using right away. One additional software needed to be downloaded ([deej](#deej-configuration)) by for the potential meter functionality to be available
 
