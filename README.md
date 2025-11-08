@@ -136,6 +136,7 @@ For more details on the HID-Project library, refer to its [official documentatio
 ### Help Display
 
 A single press using the UpLayer() function will display a help screen on the OLED when the help screen is disabled, showing the current layer and the macros assigned to each button. This feature allows for quick reference without disrupting your workflow.
+![OLED Display Examples](images/oled-example.jpg)
 
 ### Locking the Start Layer
 
@@ -143,6 +144,9 @@ The rotary encoder includes a long-press function to lock the current layer. To 
 
 1. Press and hold the rotary encoder button.
 2. After the specified duration (.5 sec), the current layer will be locked as the start layer.
+
+![Lock Examples](images/lock-layer-example.jpg)
+
 3. This ensures that even after idle or reset, the device will revert to your preferred layer.
 
 This functionality is especially useful for maintaining a consistent workflow across sessions.
@@ -150,6 +154,7 @@ This functionality is especially useful for maintaining a consistent workflow ac
 ### RGB Functionality
 
 KommPad includes RGB LED support, allowing you to customize lighting effects for enhanced aesthetics and functionality. The RGB features are controlled using the `rgb.ino` file, which provides several predefined effects.
+![RGB Examples](images/rgb.gif)
 
 #### Available Effects
 
